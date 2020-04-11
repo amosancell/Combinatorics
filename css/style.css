@@ -1,0 +1,23 @@
+.header {
+	padding:  50px 0 0 0;
+	font-size: 50px;
+}
+
+.red {
+	background-color: red;
+	color: white;
+	border-radius: 10px;
+
+}
+
+.white {
+	background-color: white;
+	color: red;
+	border-radius: 10px;
+
+}
+
+/* NOTE: This must be defined after .red for specificity issues! */
+.small {
+	border-radius: 4px;
+}

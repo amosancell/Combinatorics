@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>  Combinatorial Proof Demo </title>
+		<link href="css/grid.css" rel="stylesheet" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/text.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+	</head>
+
+	<body>
+
+
+		<div class= "container_12">
+			<div class="grid_12">
+				<p class="header"><span class="red">Combin</span><span class="white">atorics</span></p>
+				<h4 style="color:red; font-weight: unset;">by Amos Ancell</h4>
+			</div>
+			<div class="grid_12">
+				<br>
+			</div>
+			<div class="grid_12">
+				<p>In high school, the number of proof based exercises in math class is very small. And generally there are only a few techniques taught to actually prove things. Maybe you are taught compass geometry proofs or you are taught inductive proofs. In AP Calculus you might discuss epsilon-delta proofs or proofs of convergence for infinite series, but in general the techniques are taught in a formulaic manner, leaving students completely unaware of the subtle and creative sides of proof writing that make up the majority of mathematics.</p>
+				<p>This can often lead students to completely miss the idea of proofs. They spend so much time using theorems and so little time proving them that they think the theorem is the main accomplishment. What bullshit! Don't get me wrong, theorems are incredibly important. But the proof is where the real magic lays, because in the proof you learn where the theorem comes from, how it connects to other areas of mathematics, and most importantly, you learn why the theorem is correct.</p>
+				<p>That is why today, I will discuss what I consider to be one of the most whimsical, fun, and simple methods of proof: the combinatorial proof. Now, combinatorial proofs aren't applicable to all problems, especially not in the format that I will be discussing today, but I hope they will still show you some of the fun and beauty of writing mathematical proofs</p>
+			</div>
+			<div class="grid_12">
+				<p>The basic idea of the combinatorial proof is to consider a theorem in terms of counting. You show that the LHS and RHS both count the same thing and therefore must be equal. This method of argument is rarely the only argument to justify a claim, but it can often be the simplest.</p>
+				<p>To demonstrate this, I will discuss a number of theorems, proving them both combinatorially and analytically.</p>
+			</div>
+			<div class="grid_12">
+				<p><i>Note: Unless specified, all numbers are assumed to be elements of the natural numbers \( \mathbb{N} = \{1, 2, 3, ...\}\) </i></p>
+			</div>
+			<div class="grid_12 ">
+				<hr>
+				<h2><span class="red small">Theor</span><span class="white">em 1: </span> \(n \choose k\) = \(n \choose n-k\)</h2>
+				<hr>
+			</div>
+			<div class="grid_6">
+				<h1><span class="white">Combina</span><span class="red small">torial Proof:</span></h1>
+				<p> Let \(S\) be a set of \(n\) elements. Then by definition, \(n \choose k\) counts the number of  \(k\)-subsets of \(S\). So our goal is to show that \(n \choose n-k\) also counts the number of \(k\)-subsets of \(S\).</p>
+				<p>First, observe that \(n \choose n-k\) counts the number of \(n-k\)-subsets of \(S\). Now let \(T = \{a_1,a_2,...,a_{n-k}\}\) be some  \(n-k\)-subset of \(S\). Then \(S \setminus T\) is a \(k\)-subset of \(S\). And note that this correspondence of taking the set-difference is obviously \(1-1\), and so for each \(n-k\)-subset of S you get exactly 1 \(k\)-subset of S, meaning that \(n \choose n-k\) counts the number of \(k\)-subsets of \(S\) and so we are done. \(\blacksquare\)</p>
+				<p>This is an incredibly simple example of this style of combinatorial proof. In fact, talking to a mathematician, this proof could have been described just by saying: choose a \(k\) element subset of \(S\). Taking the complement under \(S\) gives exactly one \(n-k\)-subset of \(S\).</p>
+			</div>
+			<div class="grid_6">
+				<h1><span class="red small">Analytic Pr</span><span class="white">oof:</span></h1>
+				<p>Starting on the LHS gives:</p>
+				<p>\({n \choose k} = \frac{n!}{(k!)(n-k)!}\) </p>
+				<p>\(= \frac{n!}{(n-k)!(k!)}\) by commutativity of multiplication</p>
+				<p>\(= {n \choose n-k} \) by definition. \(\blacksquare\)</p>
+				<p>So in this case the analytic proof was much shorter and probably obvious, however in more complicated situations, the combinatorial proof can much more elegant.</p>
+			</div>
+			<div class="grid_12">
+				<hr>
+				<h2><span class="red small">Theor</span><span class="white">em 2: </span> \(k{n \choose k} = n{n-1 \choose k-1}\)</h2>
+				<hr>
+			</div>
+			<div class="grid_6">
+				<h1><span class="white">Combina</span><span class="red small">torial Proof:</span></h1>
+				<p>Let \(S\) be a set of \(n\) elements. It is a little difficult to figure out what to count in this situation. But if you sit with is long enough you might try to consider all of the \(k\)-subsets of \(S\) with a "distinguished" element." For example, \(\{1^*,2,3,4\},\{1,2^*,3,6\},\{1,2,3^*,5\}\) are examples of 4-subsets of the set \(\{1,2,...,n\}\). We count these subsets in 2 different ways.</p>
+				<p>Method 1: Start by picking a \(k\)-subset of \(S\). This can be done in \(n \choose k\) ways. Then choose which element in this subset is "distinguished." This can be done in \(k\) ways. This gives a total of \(k{n \choose k}\) possibilities. </p>
+				<p>Method 2: Start by picking the distinguished element. This can be done in \(n\) ways. Then choose the other \(k-1\) values to go in the \(k\) subset from the remaining \(n-1\) values. (\(k-1\) because the distiguished element must go in the subset; and \(n-1\) because we can't choose the distinguished element twice). This can be done in \(n-1 \choose k-1\) ways. Thus there are \(n{n-1 \choose k-1}\) possibilities.</p>
+				<p>Because Method 1 and Method 2 count the same thing, the expressions we found must be equal and so we have proved out claim. \(\blacksquare\)</p>
+			</div>
+			<div class="grid_6">
+				<h1><span class="red small">Analytic Pr</span><span class="white">oof:</span></h1>
+				<p>Simplifying the LHS a little gives:</p>
+				<p>\(k{n \choose k} = k(\frac{n!}{(k!)(n-k)!}) = \frac{k \cdot n!}{(k!)(n-k)!} = \frac{n!}{(k-1)!(n-k)!}\)</p>
+				<p>Then simplifying the RHS a little gives:</p>
+				<p>\(n{n-1 \choose k-1} = n(\frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} = \frac{n \cdot (n-1)!}{(k-1)!(n-1-k+1))!} = \frac{n!}{(k-1)!(n-k)!}\)</p>
+				<p>Thus the LHS and RHS simplify to the same expression using comlpetely reversible operations, so LHS = RHS and we have proved the claim. \(\blacksquare\)</p>
+				<p>There is actually an interesting corrolary to this Theorem that I will prove next: </p>
+			</div>
+			<div class="grid_12">
+				<hr>
+				<h2><span class="red small">Corollary to Th</span><span class="white">eorem 2:</span> If \(p\) is prime and \(s \in \mathbb{N}\), then \({p^s \choose k} \equiv 0 \pmod p\) for \(1 \le k \le p^s-1\)</h2>
+				<hr>
+			</div>
+			<div class="grid_12">
+				<p>This follows pretty directly from Theorem 2. Plugging in \(n = p^s\) to Theorem 2 gives \(k{p^s \choose k} = p^s{p^s-1 \choose k-1}\). Then observe that the RHS has at least \(s\) factors of \(p\). But \(k \le p^s\), so dividing by \(k\) can never get rid of all of those \(p\)'s. Therefore after dividing the RHS by \(k\), you must end up with an expression of the form \(Cp\) where \(C \in \mathbb{N}\) and therefore \({p^s \choose k} = Cp\), so \({p^s \choose k} \equiv 0 \pmod p\). \(\blacksquare\)</p>
+			</div>
+			<div class="grid_12">
+				<hr>
+				<p>I only showed the really simple examples of combinatorial proofs here, but I hope it was enough to get you curious about more ways when they are the "best" method of proof. Below are a few extra problems for you to try out on your own!</p>
+				<hr>
+			</div>
+			<div class="grid_4">
+				<h3><span class="red small">Probl</span><span class="white">em 1:</span></h3>
+				<p>\(\forall{n} \in \mathbb{N} \cup \{0\}, n \ge 0\),</p>
+				<h5>\({n \choose 0} + {n \choose 1} + ... + {n \choose n} = 2^n\)</h5>
+				<br>
+				<br>
+				<p>Combinatorial Hint: Try counting all of the possible subsets of the set \(\{1, 2, ..., 3\}\)</p>
+				<p>Analytic Hint: Consider the Binomial Theorem \({(x+y)}^n = \sum_{k=0}^n{n \choose k}x^ky^{n-k}\)</p>
+			</div>
+			<div class="grid_4">
+				<h3><span class="red small">Probl</span><span class="white">em 2:</span></h3>
+				<p>\(\forall{n} \in \mathbb{N} \cup \{0\}, n \ge 0\),</p>
+				<h5>\(\sum_{k=0}^n{n \choose k}^2 = {2n \choose n} \)</h5>
+				<br>
+				<br>
+				<p>Combinatorial Hint: Count the number of \(n\)-subsets of a set with \(2n\) elements. Partition that set in to 2 other sets, each with \(n\) elements.</p>
+				<p>Analytic Hint: Recall \({(1+x})^{2n} = {(1+x)}^n{(1+x)}^n\) and consider the coefficient of \(x^n\) on both sides</p>
+			</div>
+			<div class="grid_4">
+				<h3><span class="red small">Probl</span><span class="white">em 3:</span></h3>
+				<p>\(\forall m_1,m_2,n \in \mathbb{N}\),</p>
+				<h5>\(\sum_{k=0}^n{{m_1 \choose k}{m_2 \choose n-k}} = {m_1+m_2 \choose n}\)</h5>
+				<br>
+				<br>
+				<p>Combinatorial Hint: This is a generalization of the previous problem. Instead of partitioning into two sets both of size \(n\), what sizes should you now use?</p>
+				<p>Analytic Hint: Instead of starting with \({(1+x})^{2n}\), how should you start?</p>
+			</div>
+		</div>
+	</body>
+</html>
+
